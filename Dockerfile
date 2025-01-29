@@ -6,7 +6,7 @@ ENV WAR_FILE simple-war.war
 ENV DEPLOY_DIR /usr/local/tomcat/webapps/
 
 # Copy the WAR file to the Tomcat webapps directory
-COPY target/${WAR_FILE} ${DEPLOY_DIR}
+COPY . .
 
 # Expose port 8080
 EXPOSE 8080
