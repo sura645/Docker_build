@@ -15,7 +15,15 @@ jobs:
     steps:
     - name: Checkout Code
       uses: actions/checkout@v3
-
+      
+    - name: Log in to Docker Hub
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+   
     - name: Build Docker Image
-      run: docker build -t dockerimage .
- 
+      run: docker build -t shaikbyte/github_action_docker:latest .
+   
+    - name: Push Docker Image
+      run: docker push shaikbyte/github_action_docker:latest
+      
+    - name: Log out from Docker Hub  
+      run: docker logout
