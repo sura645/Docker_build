@@ -1,10 +1,6 @@
-# Use the official Tomcat base image
-FROM tomcat:9.0
-# Copy the WAR file to the Tomcat webapps directory
-COPY . .
-
-# Expose port 8080
-EXPOSE 8080
-
-# Start Tomcat
-CMD ["catalina.sh", "run"]
+FROM python:3.9
+WORKDIR /app
+COPY app.py requirements.txt /app/
+RUN pip install -r requirements.txt
+EXPOSE 5000
+CMD ["python", "app.py"]
